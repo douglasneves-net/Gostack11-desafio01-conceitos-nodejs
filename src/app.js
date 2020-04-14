@@ -16,11 +16,12 @@ app.get("/repositories", (request, response) => {
 
 app.post("/repositories", (request, response) => {
   const { title, url, techs } = request.body;
+  const format = /\s*,\s*/;
   const repository = {
     id: uuid(),
     title,
     url,
-    techs,
+    techs: techs.split(format),
     likes: 0,
   }
   repositories.push(repository);
